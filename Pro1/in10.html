@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        th{border: 1px solid rebeccapurple;}
+        td{
+           border: 1px solid rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+    
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加</h3>
+            </div>
+            <div class="panel-body form-inline">
+                <label>
+                    ID:
+                    <input type="text" class="form-control" v-model = "id">
+                </label>
+                <label>
+                    name:
+                    <input type="text" class="form-control" v-model = "name">
+                </label>
+                <input type="button" value="添加" class="btn btn-primary" @click="add()">
+                <label>搜索
+                    <input type="text" class="form-control" v-model="keywords">
+                </label>
+            </div>
+        </div>
+       
+        <table class="table table-berdered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>Ctime</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in search(keywords)" :key='item.id'>
+                    <td>{{item.id}}</td>
+                    <td v-text="item.name"></td>
+                    <td>{{item.Ctime}}</td>
+                     <td><a href="" @click.prevent = "del(item.id)">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            id:'',
+            name:'',
+            keywords:'',
+            list:[
+               { id:1,name:'aa',Ctime:new Date()},
+               { id:2,name:'bb',Ctime:new Date()},
+               { id:3,name:'aa',Ctime:new Date()},
+               { id:4,name:'bb',Ctime:new Date()},
+        ]
+        },
+        methods: {
+            add(){
+              let product = {id:this.id,name:this.name,Ctime:new Date()}
+              this.list.push(product)
+              this.id = this.name = "";
+            },
+            del(id){
+            //  如何更据id找删除的索引
+            // this.list.some((item,i)=>{
+            // if(item.id == id){
+            //    this.list.splice(i,1)
+            //    return true;
+        //        }
+        // })
+          let index = this.list.findIndex((item)=>{
+              if(item.id == id){
+                  return true;
+                  }
+               })
+          this.list.splice(index,1)
+            },
+            search(keywords){
+                // let arr = []
+                // this.list.forEach(item => {
+                //     if(item.name.indexOf(keywords) != -1){
+                //         arr.push(item)
+                //     }
+                // })
+                // return arr
+             return this.list.filter(item =>{
+                    if(item.name.includes(keywords)){
+                        return item
+                    }
+                })
+            }
+        },
+    })
+    </script>
+</body>
+</html>

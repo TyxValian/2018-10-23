@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue中添加样式</title>
+    <style>
+    .red{
+        color: red;
+    }
+    .thin{
+        font-weight: 200;
+    }
+    .italic{
+        font-style: italic;
+    }
+    .active{
+        letter-spacing:0.5em;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <h1 :class="['thin','italic','active',flag?'red':'']">this is Vue,as a joke</h1> -->
+        <!-- <h1 :class="['thin','italic','active',{'red':flag}]">this is Vue,as a joke</h1> -->
+                  <!-- 如果flag为ture就运用这个属性，为flase就不用 -->
+                  <h1 :class="{red:true,thin:true,active:false}">this is Vue,as a joke</h1>
+    </div>
+     <script src="./vue.js"></script>
+     <script>
+     let vm = new Vue({
+         el:'#app',
+         data:{
+          flag:true
+         }
+     })
+     </script>
+</body>
+</html>

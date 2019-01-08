@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" @click = "flag = !flag">
+        <h3 v-show="flag">xxxxxx</h3>
+        <!-- v-show会自己创建display属性 初始渲染消耗-->
+        <h3 v-if="flag">xxxxxxxx</h3> 
+        <!-- v-if直接删除在创建，消耗性能较强 -->
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            flag:"true"
+        }
+    })
+    </script>
+</body>
+</html>

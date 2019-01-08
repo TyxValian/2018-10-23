@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .inner{
+        height: 150px;
+        background-color: darkcyan;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 阻止冒泡事件.stop -->
+    <!-- <div class="inner" @click = "divhandler">
+            <input type="button" value = "怼他" @click.stop="buthandler">
+    </div> -->
+
+    <!-- .prevent阻止默认行为 -->
+   <!-- <a href="http://www.baidu.com" @click.prevent= "lijie">百度</a> -->
+
+
+   <!-- .capture捕获机制 -->
+    <!-- <div class="inner" @click.capture = "divhandler">
+            <input type="button" value = "怼他" @click="buthandler">
+    </div> -->
+
+       
+    <!-- .self实现点击自己元素才会触发的元素 -->
+     <!-- <div class="inner" @click.self = "divhandler">
+            <input type="button" value = "怼他" @click.self="buthandler">
+    </div> -->
+    </div> 
+    <script src="./vue.js"></script>
+    <script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+
+        },
+        methods: {
+            divhandler(){
+                console.log('div事件')
+            },
+            buthandler(){
+                console.log("but事件")
+            },
+            lijie(){
+                console.log("触发连接的事件")
+            },
+        },
+    })
+    </script>
+</body>
+</html>
